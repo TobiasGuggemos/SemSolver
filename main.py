@@ -7,7 +7,10 @@ from openpyxl import load_workbook
 # according to students' preferences
 # and upper limits on max number of students working on the same topic
 
-# Read input from excel and create data frame
+# Read input from excel and create data frame. 
+# The input file contains a sheet "input" with the students' preferences. The table organizes students in rows and topics in columns.
+# The table entries represent the students' preferences for the given topics. A higher value stands for a higher preference.
+# In my courses, usually, students may allocate 10 points on at least three topics. 
 df=pd.read_excel("SemSolver.xlsx", "input")
 df_short=df.iloc[:,3:df.shape[1]]
 #points=df_short.to_dict('index')
@@ -15,6 +18,7 @@ df_short=df.iloc[:,3:df.shape[1]]
 # define list of students and topics, define max number of students for one topic
 students=[str(i) for i in range(1,1+df_short.shape[0])]
 topics=[str(i) for i in range(1,1+df_short.shape[1])]
+# max number of students for one topic. Please try different values for this parameter based on number of students and number of topics in your course.
 max_topics = 3
 
 # Setting up optimization problem, decision variables
